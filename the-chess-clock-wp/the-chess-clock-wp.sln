@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "the-chess-clock-wp", "the-chess-clock-wp\the-chess-clock-wp.csproj", "{3AB5927B-DF63-4F60-8761-B6989C1AC16E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "the-chess-clock-wp.test", "the-chess-clock-wp.test\the-chess-clock-wp.test.csproj", "{820EC887-2A20-4B7C-A897-2D1CACA63A86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Debug|ARM.ActiveCfg = Debug|ARM
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Debug|ARM.Build.0 = Debug|ARM
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Debug|ARM.Deploy.0 = Debug|ARM
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Debug|x86.ActiveCfg = Debug|x86
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Debug|x86.Build.0 = Debug|x86
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Debug|x86.Deploy.0 = Debug|x86
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Release|ARM.ActiveCfg = Release|ARM
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Release|ARM.Build.0 = Release|ARM
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Release|ARM.Deploy.0 = Release|ARM
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Release|Mixed Platforms.Build.0 = Release|x86
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Release|Mixed Platforms.Deploy.0 = Release|x86
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Release|x86.ActiveCfg = Release|x86
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Release|x86.Build.0 = Release|x86
+		{3AB5927B-DF63-4F60-8761-B6989C1AC16E}.Release|x86.Deploy.0 = Release|x86
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Debug|ARM.ActiveCfg = Debug|ARM
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Debug|ARM.Build.0 = Debug|ARM
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Debug|x86.ActiveCfg = Debug|x86
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Debug|x86.Build.0 = Debug|x86
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Release|ARM.ActiveCfg = Release|ARM
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Release|ARM.Build.0 = Release|ARM
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Release|Mixed Platforms.Build.0 = Release|x86
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Release|x86.ActiveCfg = Release|x86
+		{820EC887-2A20-4B7C-A897-2D1CACA63A86}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
