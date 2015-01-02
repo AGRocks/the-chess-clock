@@ -1,0 +1,56 @@
+﻿<Page
+    x:Class="the_chess_clock_wp.Views.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:the_chess_clock_wp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding Settings, Source={StaticResource Locator}}">
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Label="Ok" Icon="Accept" Click="AppBarButton_Click" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="THE CHESS CLOCK" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="Settings" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <!--TODO: Content should be placed within the following grid-->
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <TimePicker Grid.Row="0"
+                            Header="White Time"
+                            Margin="2" 
+                            HorizontalAlignment="Left" 
+                            Time="{Binding WhiteTime, Mode=TwoWay}" ClockIdentifier="24HourClock"/>
+                <TimePicker Grid.Row="1"
+                            Header="Black Time"
+                            Margin="2" 
+                            HorizontalAlignment="Left"                            
+                            Time="{Binding BlackTime, Mode=TwoWay}" ClockIdentifier="24HourClock"/>
+            </Grid>            
+        </Grid>
+    </Grid>
+</Page>

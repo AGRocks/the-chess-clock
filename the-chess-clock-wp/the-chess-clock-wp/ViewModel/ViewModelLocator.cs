@@ -1,17 +1,3 @@
-/*
-  In App.xaml:
-  <Application.Resources>
-      <vm:ViewModelLocator xmlns:vm="clr-namespace:the_chess_clock_wp"
-                           x:Key="Locator" />
-  </Application.Resources>
-  
-  In the View:
-  DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
-
-  You can also use Blend to do all this with the tool's support.
-  See http://www.galasoft.ch/mvvm
-*/
-
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
@@ -31,27 +17,8 @@ namespace the_chess_clock_wp.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            //if (ViewModelBase.IsInDesignModeStatic)
-            //{
-            //    // Create design time view services and models
-            //    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            //}
-            //else
-            //{
-            //    // Create run time view services and models
-            //    SimpleIoc.Default.Register<IDataService, DataService>();
-            //}
-
-            SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<ClockViewModel>();
-        }
-
-        public MainViewModel Main
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
+            SimpleIoc.Default.Register<SettingsViewModel>();
         }
 
         public ClockViewModel Clock
@@ -59,6 +26,14 @@ namespace the_chess_clock_wp.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<ClockViewModel>();
+            }
+        }
+
+        public SettingsViewModel Settings
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SettingsViewModel>();
             }
         }
         

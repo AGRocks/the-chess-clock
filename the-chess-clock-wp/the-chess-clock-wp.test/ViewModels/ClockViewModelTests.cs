@@ -1,13 +1,13 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 using System;
 using the_chess_clock_wp.ViewModel;
 
 namespace the_chess_clock_wp.test.ViewModels
 {
-    [TestFixture]
+    [TestClass]
     public class ClockViewModelTests
     {
-        [Test]
+        [TestMethod]
         public void WhetherWhiteMoveEnablesBlackMove()
         {
             var viewModel = new ClockViewModel();
@@ -15,10 +15,10 @@ namespace the_chess_clock_wp.test.ViewModels
 
             viewModel.WhiteMoveCommand.Execute(null);
 
-            Assert.That(viewModel.IsBlackMove);
+            Assert.IsTrue(viewModel.IsBlackMove);
         }
 
-        [Test]
+        [TestMethod]
         public void WhetherBlackMoveEnablesWhiteMove()
         {
             var viewModel = new ClockViewModel();
@@ -26,10 +26,10 @@ namespace the_chess_clock_wp.test.ViewModels
 
             viewModel.BlackMoveCommand.Execute(null);
 
-            Assert.That(viewModel.IsWhiteMove);
+            Assert.IsTrue(viewModel.IsWhiteMove);
         }
 
-        [Test]
+        [TestMethod]
         public void WhetherTimerChangesOnWhiteMove()
         {
             var viewModel = new ClockViewModel();
@@ -38,11 +38,11 @@ namespace the_chess_clock_wp.test.ViewModels
             viewModel.SetWhiteTime(oneMinute);
 
             viewModel.BlackMoveCommand.Execute(null);
-
-            Assert.That(viewModel.WhiteTime < oneMinute);
+            
+            Assert.IsTrue(viewModel.WhiteTime < oneMinute);
         }
 
-        [Test]
+        [TestMethod]
         public void WhehterTimerChangesOnBlackMove()
         {
             var viewModel = new ClockViewModel();
@@ -52,7 +52,7 @@ namespace the_chess_clock_wp.test.ViewModels
 
             viewModel.WhiteMoveCommand.Execute(null);
 
-            Assert.That(viewModel.BlackTime < oneMinute);
+            Assert.IsTrue(viewModel.BlackTime < oneMinute);
         }
     }
 }

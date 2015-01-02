@@ -1,16 +1,14 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using the_chess_clock_wp.Common;
 using Windows.UI.Xaml;
 
 namespace the_chess_clock_wp.ViewModel
 {
-    public class ClockViewModel : MainViewModel
+    public class ClockViewModel : ViewModelBase
     {
         private bool isWhiteMove;
         private bool isBlackMove;
@@ -18,15 +16,37 @@ namespace the_chess_clock_wp.ViewModel
         private TimeSpan blackTime;
         private ICommand whiteMoveCommand;
         private ICommand blackMoveCommand;
+        private ICommand resetTimeCommand;
 
-        private Stopwatch _watch; 
+        private Stopwatch watch;
         private DispatcherTimer timer;
 
         public ClockViewModel()
         {
             this.whiteTime = TimeSpan.FromMinutes(5);
             this.blackTime = TimeSpan.FromMinutes(5);
+            this.timer = new DispatcherTimer();
+            this.timer.Interval = TimeSpan.FromSeconds(1);
+            this.timer.Tick += TimerTick;
             this.IsWhiteMove = true;
+        }
+
+        private void TimerTick(object sender, object e)
+        {
+            if (this.IsWhiteMove)
+            {
+                this.whiteTime = this.whiteTime.Subtract(TimeSpan.FromSeconds(1));
+                this.RaisePropertyChanged("WhiteTime");
+                this.RaisePropertyChanged("WhiteTimeStr");
+                return;
+            }
+
+            if (this.isBlackMove)
+            {
+                this.blackTime = this.blackTime.Subtract(TimeSpan.FromSeconds(1));
+                this.RaisePropertyChanged("BlackTime");
+                return;
+            }
         }
 
         public bool IsWhiteMove
@@ -61,7 +81,12 @@ namespace the_chess_clock_wp.ViewModel
         {
             get
             {
-                return this.whiteMoveCommand ?? new RelayCommand(this.OnWhiteMove);
+                if (this.whiteMoveCommand == null)
+                {
+                    this.whiteMoveCommand = new RelayCommand(this.OnWhiteMove);
+                }
+
+                return this.whiteMoveCommand;
             }
         }
 
@@ -69,7 +94,12 @@ namespace the_chess_clock_wp.ViewModel
         {
             get
             {
-                return this.blackMoveCommand ?? new RelayCommand(this.OnBlackMove);
+                if (this.blackMoveCommand == null)
+                {
+                    this.blackMoveCommand = new RelayCommand(this.OnBlackMove);
+                }
+
+                return this.blackMoveCommand;
             }
         }
 
@@ -79,6 +109,15 @@ namespace the_chess_clock_wp.ViewModel
             {
                 this.IsBlackMove = false;
                 this.IsWhiteMove = true;
+                this.StartTimer();
+            }
+        }
+
+        private void StartTimer()
+        {
+            if (!this.timer.IsEnabled)
+            {
+                this.timer.Start();
             }
         }
 
@@ -88,7 +127,32 @@ namespace the_chess_clock_wp.ViewModel
             {
                 this.IsWhiteMove = false;
                 this.IsBlackMove = true;
+                this.StartTimer();
             }
+        }
+
+        public ICommand ResetTimeCommand
+        {
+            get
+            {
+                if (this.resetTimeCommand == null)
+                {
+                    this.resetTimeCommand = new RelayCommand(this.OnResetTime);
+                }
+
+                return this.resetTimeCommand;
+            }
+        }
+
+        private void OnResetTime()
+        {
+            var appSettings = new SettingsViewModel();
+            this.timer.Stop();
+            this.whiteTime = appSettings.WhiteTime;
+            this.blackTime = appSettings.BlackTime;
+            this.RaisePropertyChanged("BlackTime");
+            this.RaisePropertyChanged("WhiteTime");
+            this.RaisePropertyChanged("WhiteTimeStr");
         }
 
         public TimeSpan WhiteTime
