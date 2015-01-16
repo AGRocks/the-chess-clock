@@ -1,5 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Input;
 using the_chess_clock_wp.Common;
 
 namespace the_chess_clock_wp.ViewModel
@@ -11,6 +15,8 @@ namespace the_chess_clock_wp.ViewModel
         private const string INCREMENTAL = "incremental";
 
         private ISetttingsProvider settings;
+        private RelayCommand addSecondCommand;
+        private RelayCommand substractSecondCommand;
 
         public SettingsViewModel()
         {
@@ -49,13 +55,50 @@ namespace the_chess_clock_wp.ViewModel
         {
             get
             {
-                return this.settings.GetValueOrDefault<int>(INCREMENTAL, 1);
+                return this.settings.GetValueOrDefault<int>(INCREMENTAL, 0);
             }
 
             set
             {
-                this.settings.SetValue(INCREMENTAL, value);
-                this.RaisePropertyChanged("Incremental");
+                if (value >= 0)
+                {
+                    this.settings.SetValue(INCREMENTAL, value);
+                    this.RaisePropertyChanged("Incremental");
+                }
+            }
+        }
+
+        public ICommand AddSecondCommand
+        {
+            get
+            {
+                if (this.addSecondCommand == null)
+                {
+                    this.addSecondCommand = new RelayCommand(() => Incremental++ );
+                }
+
+                return this.addSecondCommand;
+            }
+        }
+
+        public ICommand SubstractSecondCommand
+        {
+            get
+            {
+                if (this.substractSecondCommand == null)
+                {
+                    this.substractSecondCommand = new RelayCommand(() => Incremental--);
+                }
+
+                return this.substractSecondCommand;
+            }
+        }
+
+        public List<int> IncrementalRange
+        {
+            get
+            {
+                return Enumerable.Range(0, 59).ToList();
             }
         }
     }

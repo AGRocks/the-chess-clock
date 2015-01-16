@@ -22,12 +22,13 @@ namespace the_chess_clock_wp.ViewModel
         private Stopwatch watch;
         private DispatcherTimer timer;
         private SettingsViewModel appSettings;
+        private RelayCommand pauseTimeCommand;
 
         public ClockViewModel()
         {
             this.appSettings = new SettingsViewModel();
-            this.whiteTime = TimeSpan.FromMinutes(5);
-            this.blackTime = TimeSpan.FromMinutes(5);
+            this.whiteTime = appSettings.WhiteTime;
+            this.blackTime = appSettings.BlackTime;
             this.timer = new DispatcherTimer();
             this.timer.Interval = TimeSpan.FromSeconds(1);
             this.timer.Tick += TimerTick;
@@ -110,8 +111,10 @@ namespace the_chess_clock_wp.ViewModel
         {
             if (this.IsBlackMove)
             {
+                this.blackTime = this.blackTime.Add(TimeSpan.FromSeconds(appSettings.Incremental));
                 this.IsBlackMove = false;
                 this.IsWhiteMove = true;
+                this.RaisePropertyChanged("BlackTime");
                 this.StartTimer();
             }
         }
@@ -129,6 +132,9 @@ namespace the_chess_clock_wp.ViewModel
         {
             if (this.IsWhiteMove)
             {
+                this.whiteTime = this.whiteTime.Add(TimeSpan.FromSeconds(appSettings.Incremental));
+                this.RaisePropertyChanged("WhiteTime");
+                this.RaisePropertyChanged("WhiteTimeStr");
                 this.IsWhiteMove = false;
                 this.IsBlackMove = true;
                 this.StartTimer();
@@ -154,17 +160,33 @@ namespace the_chess_clock_wp.ViewModel
             {
                 if (this.startTimeCommand == null)
                 {
-                    this.startTimeCommand = new RelayCommand(this.OnStartTime);
+                    this.startTimeCommand = new RelayCommand(this.StartTimer);
                 }
 
                 return this.startTimeCommand;
             }
         }
 
-        private void OnStartTime()
+        public ICommand PauseTimeCommand
         {
-            this.timer.Start();
-            this.RaisePropertyChanged("IsRunning");
+            get
+            {
+                if (this.pauseTimeCommand == null)
+                {
+                    this.pauseTimeCommand = new RelayCommand(this.OnPauseTimer);
+                }
+
+                return this.pauseTimeCommand;
+            }
+        }
+
+        private void OnPauseTimer()
+        {
+            if (this.timer.IsEnabled)
+            {
+                this.timer.Stop();
+                this.RaisePropertyChanged("IsRunning");
+            }
         }
 
         public bool IsRunning
@@ -217,6 +239,14 @@ namespace the_chess_clock_wp.ViewModel
             get 
             {
                 return appSettings.Incremental;
+            }
+        }
+
+        public bool HasIncremental
+        {
+            get
+            {
+                return this.Incremental > 0;
             }
         }
 
