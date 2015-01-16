@@ -8,6 +8,7 @@ namespace the_chess_clock_wp.ViewModel
     {
         private const string BLACK_TIME = "blackTime";
         private const string WHITE_TIME = "whiteTIme";
+        private const string INCREMENTAL = "incremental";
 
         private ISetttingsProvider settings;
 
@@ -15,7 +16,6 @@ namespace the_chess_clock_wp.ViewModel
         {
             this.settings = new AppSettings();
         }
-
 
         public TimeSpan WhiteTime
         {
@@ -45,5 +45,18 @@ namespace the_chess_clock_wp.ViewModel
             }
         }
 
+        public int Incremental
+        {
+            get
+            {
+                return this.settings.GetValueOrDefault<int>(INCREMENTAL, 1);
+            }
+
+            set
+            {
+                this.settings.SetValue(INCREMENTAL, value);
+                this.RaisePropertyChanged("Incremental");
+            }
+        }
     }
 }
