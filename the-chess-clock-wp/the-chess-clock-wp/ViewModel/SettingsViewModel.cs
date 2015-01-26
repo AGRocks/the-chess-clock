@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using the_chess_clock_wp.Common;
+#if SILVERLIGHT
+    using the_chess_clock_wp.WP8.Common;
+#endif
 
 namespace the_chess_clock_wp.ViewModel
 {

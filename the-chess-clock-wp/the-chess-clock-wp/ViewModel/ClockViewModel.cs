@@ -3,8 +3,11 @@ using GalaSoft.MvvmLight.Command;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
-using the_chess_clock_wp.Common;
+#if SILVERLIGHT 
+using System.Windows.Threading;
+#else
 using Windows.UI.Xaml;
+#endif
 
 namespace the_chess_clock_wp.ViewModel
 {
@@ -33,6 +36,7 @@ namespace the_chess_clock_wp.ViewModel
             this.timer.Interval = TimeSpan.FromSeconds(1);
             this.timer.Tick += TimerTick;
             this.IsWhiteMove = true;
+            this.RaisePropertyChanged("ResetIconUri");
         }
 
         private void TimerTick(object sender, object e)
@@ -258,6 +262,26 @@ namespace the_chess_clock_wp.ViewModel
         public void SetBlackTime(TimeSpan timeSpan)
         {
             this.blackTime = timeSpan;
+        }
+
+        public Uri ResetIconUri
+        {
+            get { return new Uri("/Images/refresh.png", UriKind.Relative); }
+        }
+
+        public Uri PlayIconUri
+        {
+            get { return new Uri("/Images/transport.play.png", UriKind.Relative); }
+        }
+
+        public Uri PauseIconUri
+        {
+            get { return new Uri("/Images/transport.pause.png", UriKind.Relative); }
+        }
+
+        public Uri SettingsIconUri
+        {
+            get { return new Uri("/Images/feature.settings.png", UriKind.Relative); }
         }
     }
 }

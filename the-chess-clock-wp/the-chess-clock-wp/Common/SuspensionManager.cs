@@ -8,8 +8,16 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.Storage.Streams;
+
+#if SILVERLIGHT
+using System.Windows.Data;
+using System.Windows;
+using System.Windows.Controls;
+#else
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+#endif
+
 
 namespace the_chess_clock_wp.Common
 {
@@ -244,14 +252,19 @@ namespace the_chess_clock_wp.Common
             var frameState = SessionStateForFrame(frame);
             if (frameState.ContainsKey("Navigation"))
             {
+#if !SILVERLIGHT
                 frame.SetNavigationState((String)frameState["Navigation"]);
+#endif
             }
         }
 
         private static void SaveFrameNavigationState(Frame frame)
         {
             var frameState = SessionStateForFrame(frame);
+#if !SILVERLIGHT
             frameState["Navigation"] = frame.GetNavigationState();
+#endif
+
         }
     }
     public class SuspensionManagerException : Exception

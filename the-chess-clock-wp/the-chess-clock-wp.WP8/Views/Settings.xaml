@@ -1,0 +1,76 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="the_chess_clock_wp.WP8.Views.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:c4f="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    DataContext="{Binding Settings, Source={StaticResource Locator}}"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <phone:PhoneApplicationPage.Resources>
+        <Style TargetType="c4f:TimeSpanPicker">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="THE CHESS CLOCK" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Settings" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <c4f:TimeSpanPicker Grid.Row="0"
+                            Header="White Time"
+                            Margin="10,0,0,4" 
+                            HorizontalAlignment="Left" 
+                            Value="{Binding WhiteTime, Mode=TwoWay}" />
+                <c4f:TimeSpanPicker Grid.Row="1"
+                            Header="Black Time"
+                            Margin="10,0,0,4" 
+                            HorizontalAlignment="Left"                            
+                            Value="{Binding BlackTime, Mode=TwoWay}"/>
+                <StackPanel Grid.Row="2" HorizontalAlignment="Stretch" Orientation="Horizontal">
+                    <TextBox HorizontalAlignment="Left" 
+                             Margin="10,0,0,4" 
+                             VerticalAlignment="Top"
+                             Text="{Binding Incremental, Mode=TwoWay}" 
+                             Width="109" 
+                             Background="Transparent" 
+                             InputScope="AlphanumericFullWidth" IsReadOnly="True"/>
+                    <c4f:RoundButton FontSize="20" Margin="5,15,0,0" Content="+" Command="{Binding AddSecondCommand}" />
+                    <c4f:RoundButton FontSize="20" Margin="-5,15,0,0" Content="-" Command="{Binding SubstractSecondCommand}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True">
+            <shell:ApplicationBar.Buttons>
+                <shell:ApplicationBarIconButton Text="Ok" IconUri="/Images/check.png" Click="ConfirmButton_Click"/>                
+            </shell:ApplicationBar.Buttons>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>
