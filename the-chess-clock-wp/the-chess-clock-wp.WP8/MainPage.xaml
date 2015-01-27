@@ -57,7 +57,7 @@
 			BorderBrush="Gray" 
 			Content="{Binding WhiteTimeStr}"/>
     </Grid>
-    
+
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True">
             <shell:ApplicationBar.Buttons>

@@ -36,7 +36,6 @@ namespace the_chess_clock_wp.ViewModel
             this.timer.Interval = TimeSpan.FromSeconds(1);
             this.timer.Tick += TimerTick;
             this.IsWhiteMove = true;
-            this.RaisePropertyChanged("ResetIconUri");
         }
 
         private void TimerTick(object sender, object e)
@@ -46,15 +45,16 @@ namespace the_chess_clock_wp.ViewModel
                 this.whiteTime = this.whiteTime.Subtract(TimeSpan.FromSeconds(1));
                 this.RaisePropertyChanged("WhiteTime");
                 this.RaisePropertyChanged("WhiteTimeStr");
-                return;
             }
 
             if (this.isBlackMove)
             {
                 this.blackTime = this.blackTime.Subtract(TimeSpan.FromSeconds(1));
                 this.RaisePropertyChanged("BlackTime");
-                return;
             }
+
+            this.RaisePropertyChanged("WhiteTimeElapsed");
+            this.RaisePropertyChanged("BlackTimeElapsed");
         }
 
         public bool IsWhiteMove
@@ -264,24 +264,20 @@ namespace the_chess_clock_wp.ViewModel
             this.blackTime = timeSpan;
         }
 
-        public Uri ResetIconUri
+        public bool WhiteTimeElapsed
         {
-            get { return new Uri("/Images/refresh.png", UriKind.Relative); }
+            get
+            {
+                return this.whiteTime.TotalMilliseconds <= 0;
+            }
         }
 
-        public Uri PlayIconUri
+        public bool BlackTimeElapsed
         {
-            get { return new Uri("/Images/transport.play.png", UriKind.Relative); }
-        }
-
-        public Uri PauseIconUri
-        {
-            get { return new Uri("/Images/transport.pause.png", UriKind.Relative); }
-        }
-
-        public Uri SettingsIconUri
-        {
-            get { return new Uri("/Images/feature.settings.png", UriKind.Relative); }
+            get
+            {
+                return this.blackTime.TotalMilliseconds <= 0;
+            }
         }
     }
 }

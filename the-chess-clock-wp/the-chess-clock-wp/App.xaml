@@ -20,6 +20,7 @@
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal" />
+                                    
                                     <VisualState x:Name="PointerOver">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
@@ -59,6 +60,28 @@
                                             </Storyboard>
                                         </Storyboard>
                                     </VisualState>
+                                    <VisualState x:Name="TimeElapsed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                   Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Red" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                   Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="White" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <Storyboard>
+                                                <DoubleAnimation 
+                                                    Storyboard.TargetName="alarmImage"
+                                                    Storyboard.TargetProperty="Opacity" 
+                                                    From="0" To="100" Duration="0:0:1" />
+                                                <DoubleAnimation 
+                                                    Storyboard.TargetName="ContentPresenter"
+                                                    Storyboard.TargetProperty="Opacity" 
+                                                    From="1" To="0" Duration="0:0:1" />
+                                            </Storyboard>
+                                        </Storyboard>
+                                    </VisualState>
                                 </VisualStateGroup>
                                 <VisualStateGroup x:Name="FocusStates">
                                     <VisualState x:Name="Focused">
@@ -77,6 +100,10 @@
                                     <VisualState x:Name="PointerFocused" />
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
+                            <Image Canvas.ZIndex="2" x:Name="alarmImage"
+                                   Width="150" Height="150"
+                                   Source="Assets/feature.alarm_black.png" 
+                                   Opacity="0"/>
                             <Border x:Name="Border"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -167,6 +194,28 @@
                                             </Storyboard>
                                         </Storyboard>
                                     </VisualState>
+                                    <VisualState x:Name="TimeElapsed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                                   Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Red" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                   Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="White" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <Storyboard>
+                                                <DoubleAnimation 
+                                                    Storyboard.TargetName="alarmImage"
+                                                    Storyboard.TargetProperty="Opacity" 
+                                                    From="0" To="100" Duration="0:0:1" />
+                                                <DoubleAnimation 
+                                                    Storyboard.TargetName="ContentPresenter"
+                                                    Storyboard.TargetProperty="Opacity" 
+                                                    From="1" To="0" Duration="0:0:1" />
+                                            </Storyboard>
+                                        </Storyboard>
+                                    </VisualState>
                                 </VisualStateGroup>
                                 <VisualStateGroup x:Name="FocusStates">
                                     <VisualState x:Name="Focused">
@@ -185,6 +234,15 @@
                                     <VisualState x:Name="PointerFocused" />
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
+                            <Image Canvas.ZIndex="2" x:Name="alarmImage"
+                                   Source="Assets/feature.alarm.png"
+                                   Width="150" Height="150"
+                                   Opacity="0"
+                                   RenderTransformOrigin="0.5,0.5">
+                                <Image.RenderTransform>
+                                    <CompositeTransform Rotation="180"/>
+                                </Image.RenderTransform>
+                            </Image>
                             <Border x:Name="Border"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -212,7 +270,7 @@
                                StrokeEndLineCap="Square"
                                StrokeDashArray="1,1"
                                Opacity="0"
-                               StrokeDashOffset="0.5" />
+                               StrokeDashOffset="0.5" />                            
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
