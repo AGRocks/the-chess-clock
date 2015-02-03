@@ -64,7 +64,7 @@
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
                                                                    Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Red" />
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFB96767" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
                                                                    Storyboard.TargetProperty="Foreground">
@@ -198,12 +198,8 @@
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
                                                                    Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Red" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                   Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="White" />
-                                            </ObjectAnimationUsingKeyFrames>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FF952020" />
+                                            </ObjectAnimationUsingKeyFrames>                                            
                                             <Storyboard>
                                                 <DoubleAnimation 
                                                     Storyboard.TargetName="alarmImage"

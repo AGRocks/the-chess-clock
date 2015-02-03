@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 #if SILVERLIGHT 
 using System.Windows.Threading;
+using Windows.System.Display;
 #else
 using Windows.UI.Xaml;
 #endif
@@ -26,6 +27,7 @@ namespace the_chess_clock_wp.ViewModel
         private DispatcherTimer timer;
         private SettingsViewModel appSettings;
         private RelayCommand pauseTimeCommand;
+        private readonly DisplayRequest ksr = new DisplayRequest();
 
         public ClockViewModel()
         {
@@ -128,6 +130,7 @@ namespace the_chess_clock_wp.ViewModel
             if (!this.timer.IsEnabled)
             {
                 this.timer.Start();
+                ksr.RequestActive();
                 this.RaisePropertyChanged("IsRunning");
             }
         }
@@ -212,6 +215,11 @@ namespace the_chess_clock_wp.ViewModel
             this.RaisePropertyChanged("WhiteTime");
             this.RaisePropertyChanged("WhiteTimeStr");
             this.RaisePropertyChanged("IsRunning");
+            this.RaisePropertyChanged("BlackTimeElapsed");
+            this.RaisePropertyChanged("WhiteTimeElapsed");
+
+            
+            ksr.RequestRelease();
         }
 
         public TimeSpan WhiteTime
