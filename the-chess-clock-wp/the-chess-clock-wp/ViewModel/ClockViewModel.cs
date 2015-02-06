@@ -8,6 +8,7 @@ using System.Windows.Threading;
 using Windows.System.Display;
 #else
 using Windows.UI.Xaml;
+using Windows.System.Display;
 #endif
 
 namespace the_chess_clock_wp.ViewModel
@@ -27,7 +28,7 @@ namespace the_chess_clock_wp.ViewModel
         private DispatcherTimer timer;
         private SettingsViewModel appSettings;
         private RelayCommand pauseTimeCommand;
-        private readonly DisplayRequest ksr = new DisplayRequest();
+        private DisplayRequest ksr = null;
 
         public ClockViewModel()
         {
@@ -129,8 +130,13 @@ namespace the_chess_clock_wp.ViewModel
         {
             if (!this.timer.IsEnabled)
             {
+                if (this.ksr == null)
+                {
+                    ksr = new DisplayRequest();
+                    ksr.RequestActive();
+                }
+
                 this.timer.Start();
-                ksr.RequestActive();
                 this.RaisePropertyChanged("IsRunning");
             }
         }
@@ -191,6 +197,12 @@ namespace the_chess_clock_wp.ViewModel
         {
             if (this.timer.IsEnabled)
             {
+                if (this.ksr != null)
+                {
+                    this.ksr.RequestRelease();
+                    this.ksr = null;
+                }
+
                 this.timer.Stop();
                 this.RaisePropertyChanged("IsRunning");
             }
@@ -206,6 +218,12 @@ namespace the_chess_clock_wp.ViewModel
 
         private void OnResetTime()
         {
+            if (this.ksr != null)
+            {
+                this.ksr.RequestRelease();
+                this.ksr = null;
+            }
+
             this.timer.Stop();
             this.whiteTime = appSettings.WhiteTime;
             this.blackTime = appSettings.BlackTime;
@@ -217,9 +235,8 @@ namespace the_chess_clock_wp.ViewModel
             this.RaisePropertyChanged("IsRunning");
             this.RaisePropertyChanged("BlackTimeElapsed");
             this.RaisePropertyChanged("WhiteTimeElapsed");
-
-            
-            ksr.RequestRelease();
+            this.RaisePropertyChanged("IsIncrementalEnabled");
+            this.RaisePropertyChanged("Incremental");
         }
 
         public TimeSpan WhiteTime
@@ -285,6 +302,14 @@ namespace the_chess_clock_wp.ViewModel
             get
             {
                 return this.blackTime.TotalMilliseconds <= 0;
+            }
+        }
+
+        public bool IsIncrementalEnabled
+        {
+            get
+            {
+                return this.Incremental > 0;
             }
         }
     }
