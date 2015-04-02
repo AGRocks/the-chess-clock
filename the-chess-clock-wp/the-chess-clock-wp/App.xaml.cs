@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using the_chess_clock_wp.ViewModel;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -51,7 +52,8 @@ namespace the_chess_clock_wp
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-
+            this.UpdateUsagesCount();
+            
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -99,6 +101,12 @@ namespace the_chess_clock_wp
 
             // Ensure the current window is active
             Window.Current.Activate();
+        }
+
+        private void UpdateUsagesCount()
+        {
+            var locator = this.Resources.FirstOrDefault(x => x.Key.ToString() == "Locator").Value as ViewModelLocator;
+            locator.Settings.Usages++;
         }
 
         /// <summary>

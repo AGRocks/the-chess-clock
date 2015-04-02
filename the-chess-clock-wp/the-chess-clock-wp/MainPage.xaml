@@ -118,6 +118,6 @@
                     Visibility="{Binding IsIncrementalEnabled, Converter={StaticResource visibilityConverter}}">
             <TextBlock Text="+" FontSize="20" Foreground="Black"/>
             <TextBlock Text="{Binding Incremental}" FontSize="20" Foreground="Black"/>
-        </StackPanel>
+        </StackPanel>        
     </Grid>
 </Page>

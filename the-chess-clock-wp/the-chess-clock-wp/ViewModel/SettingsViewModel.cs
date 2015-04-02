@@ -16,6 +16,8 @@ namespace the_chess_clock_wp.ViewModel
         private const string BLACK_TIME = "blackTime";
         private const string WHITE_TIME = "whiteTIme";
         private const string INCREMENTAL = "incremental";
+        private const string REVIEWED = "reviewed";
+        private const string USAGES = "usages";
 
         private ISetttingsProvider settings;
         private RelayCommand addSecondCommand;
@@ -71,6 +73,38 @@ namespace the_chess_clock_wp.ViewModel
             }
         }
 
+        public bool Reviewed
+        {
+            get
+            {
+                return this.settings.GetValueOrDefault<bool>(REVIEWED, false);
+
+            }
+
+            set
+            {
+                this.settings.SetValue(REVIEWED, value);
+                this.RaisePropertyChanged("Reviewed");
+            }
+        }
+
+        public int Usages
+        {
+            get
+            {
+                return this.settings.GetValueOrDefault<int>(USAGES, 0);
+            }
+
+            set
+            {
+                if (value >= 0)
+                {
+                    this.settings.SetValue(USAGES, value);
+                    this.RaisePropertyChanged("Usages");
+                }
+            }
+        }
+
         public ICommand AddSecondCommand
         {
             get
@@ -103,6 +137,6 @@ namespace the_chess_clock_wp.ViewModel
             {
                 return Enumerable.Range(0, 59).ToList();
             }
-        }
+        }        
     }
 }
