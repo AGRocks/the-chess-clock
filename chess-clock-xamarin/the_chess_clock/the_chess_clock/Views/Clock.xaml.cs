@@ -10,6 +10,12 @@ namespace the_chess_clock
 		public Clock ()
 		{
 			InitializeComponent ();
+			this.BindingContext = DependencyService.Get<ClockViewModel> ();
+		}
+
+		public void OnSettingsClicked(object sender, EventArgs e)
+		{
+			this.Navigation.PushAsync (new Settings ());
 		}
 	}
 }

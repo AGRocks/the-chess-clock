@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 x:Class="the_chess_clock.Settings"
+			 Padding="7,20,7,7">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Reset"
+					 Icon="/Resouces/drawable/check.png"
+					 Priority="0" Activated="OnSaveSettingsClicked"></ToolbarItem>
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+	<StackLayout Orientation="Vertical">
+		<Label Text="White time"/>
+		<TimePicker Time="{Binding WhiteTime}" />
+
+		<Label Text="Black time"/>
+		<TimePicker Time="{Binding BlackTime}"/>
+
+		<Label Text="Incremental"/>
+		<StackLayout Orientation="Horizontal">
+			<Slider Value="{Binding Incremental, Mode=TwoWay}" Minimum="0" Maximum="59" HorizontalOptions="FillAndExpand"/>
+			<Label Text="{Binding Incremental}" VerticalOptions="CenterAndExpand"/>
+		</StackLayout>
+	</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

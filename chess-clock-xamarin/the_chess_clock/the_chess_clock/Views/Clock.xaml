@@ -1,5 +1,53 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="the_chess_clock.Clock">
-	<ContentPage.Content>
-	</ContentPage.Content>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 xmlns:local="clr-namespace:the_chess_clock;assembly=the_chess_clock" x:Class="the_chess_clock.Clock"
+			 Padding="7,20,7,7">
+<ContentPage.Resources>
+	<ResourceDictionary>
+		<local:TimeStampToStringConverter x:Key="timestampToStringConverter"/>
+	</ResourceDictionary>
+</ContentPage.Resources>
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Reset" 
+					 Icon="/Resources/drawable/refresh.png"
+				     Command="{Binding ResetTimeCommand}"
+					 Priority="0"/>
+		<ToolbarItem Text="Start" 
+					 Icon="/Resources/drawable/play.png"
+		             Command="{Binding StartTimeCommand}"
+				     Priority="1"/>
+		<ToolbarItem Text="Pause"
+					 Icon="/Resources/drawable/pause.png"
+					 Command="{Binding PauseTimeCommand}"/>
+		<ToolbarItem Text="Settings"
+					 Icon="/Resources/drawable/settings.png"
+					 Activated="OnSettingsClicked"/>
+	</ContentPage.ToolbarItems>
+<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="25" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Button Grid.Row="0" Rotation="180"
+			Text="{Binding BlackTime, Converter={StaticResource timestampToStringConverter}}" 
+			Command="{Binding BlackMoveCommand}"
+			IsEnabled="{Binding IsBlackMove}"
+			TextColor = "#edf5f8"
+			BackgroundColor="#00283a"
+			BorderColor="Gray"
+			BorderRadius="30"
+			Font="Bold"/>
+		<Button Grid.Row="2" 
+			Text="{Binding WhiteTime, Converter={StaticResource timestampToStringConverter}}" 
+			Command="{Binding WhiteMoveCommand}"
+			IsEnabled="{Binding IsWhiteMove}"
+			TextColor="#00283a"
+			BackgroundColor="#edf5f8"
+			BorderColor="Gray"
+			FontAttributes="Bold"
+			BorderRadius="30"
+			Font="Bold"/>
+	</Grid>
 </ContentPage>

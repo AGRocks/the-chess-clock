@@ -1,0 +1,45 @@
+﻿<Properties StartupItem="Droid\the_chess_clock.Droid.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.10.71.34.101:5555" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="the_chess_clock\Views\Clock.xaml">
+    <Files>
+      <File FileName="d:\GitHub\the-chess-clock\chess-clock-xamarin\the_chess_clock\the_chess_clock\ViewModels\SettingsViewModel.cs" Line="21" Column="21" />
+      <File FileName="d:\GitHub\the-chess-clock\chess-clock-xamarin\the_chess_clock\the_chess_clock\Views\Clock.xaml.cs" Line="2" Column="2" />
+      <File FileName="the_chess_clock\Converters\TimeStampToStringConverter.cs" Line="5" Column="5" />
+      <File FileName="the_chess_clock\Common\ISettingsProvider.cs" Line="37" Column="37" />
+      <File FileName="the_chess_clock\Views\Settings.xaml" Line="36" Column="36" />
+      <File FileName="the_chess_clock\Views\Settings.xaml.cs" Line="25" Column="25" />
+      <File FileName="the_chess_clock\ViewModels\ClockViewModel.cs" Line="1" Column="1" />
+      <File FileName="the_chess_clock\Views\Clock.xaml" Line="7" Column="7" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="the_chess_clock" expanded="True">
+            <Node name="Common" expanded="True" />
+            <Node name="Converters" expanded="True" />
+            <Node name="Timer" expanded="True" />
+            <Node name="ViewModels" expanded="True" />
+            <Node name="Views" expanded="True">
+              <Node name="Clock.xaml" expanded="True" />
+              <Node name="Settings.xaml" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="the_chess_clock.Droid" expanded="True">
+            <Node name="Assets" expanded="True" />
+            <Node name="Common" expanded="True" />
+            <Node name="Controls" expanded="True" />
+            <Node name="Resources" expanded="True">
+              <Node name="drawable" expanded="True">
+                <Node name="icon.png" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
