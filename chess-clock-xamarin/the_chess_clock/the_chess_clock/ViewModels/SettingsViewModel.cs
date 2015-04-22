@@ -23,7 +23,7 @@ namespace the_chess_clock
 
 		public SettingsViewModel()
 		{
-			this.settings = DependencyService.Get<ISetttingsProvider> ();
+			this.settings = DependencyService.Get<ISetttingsProvider> (DependencyFetchTarget.GlobalInstance);
 		}
 
 		private int GetIntProperty(string key, int defaultValue)

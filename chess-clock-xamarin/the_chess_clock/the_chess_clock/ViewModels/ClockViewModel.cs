@@ -186,6 +186,7 @@ namespace the_chess_clock
 			this.RaisePropertyChanged ("WhiteTimeElapsed");
 			this.RaisePropertyChanged ("IsIncrementalEnabled");
 			this.RaisePropertyChanged ("Incremental");
+			this.RaisePropertyChanged ("HasIncrement");
 		}
 
 		public TimeSpan WhiteTime {

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "the_chess_clock", "the_chess_clock\the_chess_clock.csproj", "{3E3D52C7-CC96-45B6-9643-F7E348414F41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "the_chess_clock.Droid", "Droid\the_chess_clock.Droid.csproj", "{AF1CAE12-B5A2-49F3-A85C-96910316E579}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Free Chess Clock", "Droid\Free Chess Clock.csproj", "{AF1CAE12-B5A2-49F3-A85C-96910316E579}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

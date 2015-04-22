@@ -37,14 +37,11 @@ namespace the_chess_clock.Droid
 		{
 			try {
 				IFolder rootFolder = FileSystem.Current.LocalStorage;
+				IFolder folder = rootFolder.CreateFolderAsync ("app-settings", CreationCollisionOption.OpenIfExists).Result;
 
-				// create a folder, if one does not exist already
-				IFolder folder = await rootFolder.CreateFolderAsync ("app-settings", CreationCollisionOption.OpenIfExists);
-				//await folder.DeleteAsync();
-				// create a file, overwriting any existing file
-				this.file = await folder.CreateFileAsync (configFile, CreationCollisionOption.OpenIfExists);
-				var xml = await file.ReadAllTextAsync ();
-				this.document = string.IsNullOrEmpty (xml) ? new XDocument(new XElement("Properties")) : XDocument.Parse (xml);
+				// following call maade sync to aviod deadlocks
+				this.file = folder.CreateFileAsync (configFile, CreationCollisionOption.OpenIfExists).Result;
+
 				this.isInitialized = true;
 			} catch (Exception ex) {
 				Debug.WriteLine (ex.Message);
@@ -52,9 +49,24 @@ namespace the_chess_clock.Droid
 			}
 		}
 
+		private XDocument Document {
+			get {
+				if (this.document == null) {
+					var xml = ReadFile(this.file).Result;
+					this.document = string.IsNullOrEmpty (xml) ? new XDocument (new XElement ("Properties")) : XDocument.Parse (xml);
+				}
+
+				return this.document;
+			}
+		}
+
+		public async Task<string> ReadFile(IFile f){
+			return await Task.Run(() => f.ReadAllTextAsync ()).ConfigureAwait(false);
+		}
+
 		public string this [string key] {
 			get {
-				var values = from n in document.Root.Elements ()
+				var values = from n in this.Document.Root.Elements ()
 				             where n.Name == key
 				             select n.Value;
 				if (values.Any ()) {
@@ -64,11 +76,11 @@ namespace the_chess_clock.Droid
 				return string.Empty;
 			}
 			set {
-				var values = from n in document.Root.Elements ()
+				var values = from n in this.Document.Root.Elements ()
 				             where n.Name == key
 				             select n;
 				if (values.Any ()) {
-					values.First ().Value = value.ToString();
+					values.First ().Value = value.ToString ();
 				} else {
 					document.Root.Add (new XElement (key, value));
 				}
@@ -77,7 +89,7 @@ namespace the_chess_clock.Droid
 
 		public async Task Save ()
 		{
-			await file.WriteAllTextAsync (document.ToString ());
+			await file.WriteAllTextAsync (this.Document.ToString ());
 		}
 
 

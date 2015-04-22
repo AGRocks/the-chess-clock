@@ -6,6 +6,7 @@
 <ContentPage.Resources>
 	<ResourceDictionary>
 		<local:TimeStampToStringConverter x:Key="timestampToStringConverter"/>
+		<local:TimeElapsedToBackgroundConverter x:Key="timeElapsedToBackgroundConverter"/>
 	</ResourceDictionary>
 </ContentPage.Resources>
 	<ContentPage.ToolbarItems>
@@ -30,21 +31,24 @@
 			<RowDefinition Height="25" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<Button Grid.Row="0" Rotation="180"
+		<Button Grid.Row="0" Rotation="180" x:Name="BlackButton"
 			Text="{Binding BlackTime, Converter={StaticResource timestampToStringConverter}}" 
 			Command="{Binding BlackMoveCommand}"
 			IsEnabled="{Binding IsBlackMove}"
 			TextColor = "#edf5f8"
-			BackgroundColor="#00283a"
+			BackgroundColor="{Binding BlackTimeElapsed, Converter={StaticResource timeElapsedToBackgroundConverter}, ConverterParameter='#00283a'}"
 			BorderColor="Gray"
 			BorderRadius="30"
 			Font="Bold"/>
-		<Button Grid.Row="2" 
+			<Label Grid.Row="1" 
+				Text="{Binding Incremental, StringFormat='Increment: {0}'}" 
+				IsVisible="{Binding HasIncremental}"/>
+		<Button Grid.Row="2" x:Name="WhiteButton"
 			Text="{Binding WhiteTime, Converter={StaticResource timestampToStringConverter}}" 
 			Command="{Binding WhiteMoveCommand}"
 			IsEnabled="{Binding IsWhiteMove}"
 			TextColor="#00283a"
-			BackgroundColor="#edf5f8"
+			BackgroundColor="{Binding WhiteTimeElapsed, Converter={StaticResource timeElapsedToBackgroundConverter}, ConverterParameter='#edf5f8'}"
 			BorderColor="Gray"
 			FontAttributes="Bold"
 			BorderRadius="30"
