@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.ApplicationInsights;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -26,6 +27,11 @@ namespace the_chess_clock_wp
     /// </summary>
     public sealed partial class App : Application
     {
+        /// <summary>
+        /// Allows tracking page views, exceptions and other telemetry through the Microsoft Application Insights service.
+        /// </summary>
+        public static TelemetryClient TelemetryClient;
+
         private TransitionCollection transitions;
 
         /// <summary>
@@ -34,6 +40,8 @@ namespace the_chess_clock_wp
         /// </summary>
         public App()
         {
+            TelemetryClient = new TelemetryClient();
+
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
         }

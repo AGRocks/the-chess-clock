@@ -9,7 +9,6 @@ using Windows.System.Display;
 #else
 using Windows.UI.Xaml;
 using Windows.System.Display;
-using System.Windows.Threading;
 #endif
 
 namespace the_chess_clock_wp.ViewModel

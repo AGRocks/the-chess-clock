@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="3351gabuza.FreeChessClock" Publisher="CN=4EFE9CEB-7B37-48E3-BDF3-0C5918ECF73B" Version="1.6.0.8" />
+  <Identity Name="3351gabuza.FreeChessClock" Publisher="CN=4EFE9CEB-7B37-48E3-BDF3-0C5918ECF73B" Version="1.6.0.9" />
   <mp:PhoneIdentity PhoneProductId="391b393b-1b20-4e3d-bd86-fb01470a3c5f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Free Chess Clock</DisplayName>
